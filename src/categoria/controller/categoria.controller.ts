@@ -12,7 +12,7 @@ import {
     UseGuards,
   } from '@nestjs/common';
   import { DeleteResult } from 'typeorm';
-import { CategoriaService } from '../service/categoria.service.entity';
+import { CategoriaService } from '../service/categoria.service';
 import { Categoria } from '../entity/categoria.entity';
   
   @Controller('/categorias')

@@ -8,11 +8,13 @@ export class CategoriaService {
   constructor(
     @InjectRepository(Categoria)
     private categoriaRepository: Repository<Categoria>,
-  ) {}
+  ) { }
 
   async findAll(): Promise<Categoria[]> {
     return await this.categoriaRepository.find({
-
+      relations: {
+        produto: true,
+      },
     });
   }
 
@@ -20,8 +22,10 @@ export class CategoriaService {
     let categoria = await this.categoriaRepository.findOne({
       where: {
         id,
+      }, relations: {
+        produto: true,
       },
-    
+
     });
 
     if (!categoria)
@@ -38,7 +42,10 @@ export class CategoriaService {
       where: {
         tipo: ILike(`%${tipo}%`),
       },
-      
+      relations: {
+        produto: true,
+      },
+
     });
   }
 
@@ -47,7 +54,10 @@ export class CategoriaService {
       where: {
         descricao: ILike(`%${descricao}%`),
       },
-    
+      relations: {
+        produto: true,
+      },
+
     });
   }
 
